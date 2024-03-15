@@ -9,14 +9,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Calculator application',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 2, 250, 246)),
-        useMaterial3: true,
-      ),
+      theme: ThemeData(primarySwatch: Colors.deepOrange),
       home: const MyHomePage(title: 'Calculator App'),
     );
   }
 }
-
-
