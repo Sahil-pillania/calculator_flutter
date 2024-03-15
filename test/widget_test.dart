@@ -10,6 +10,7 @@ void main() {
       await tester.pumpWidget(MyApp());
 
       expect(find.byType(Column), findsOneWidget);
+      expect(find.text("Welcome"), findsNothing);
     },
   );
 }
