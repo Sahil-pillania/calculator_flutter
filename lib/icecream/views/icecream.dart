@@ -3,28 +3,22 @@ import "dart:convert";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 
-class Icecream_view extends StatefulWidget {
-  const Icecream_view({super.key});
+class Icecream_view extends StatelessWidget {
+  Icecream_view({super.key});
 
-  @override
-  State<Icecream_view> createState() => _Icecream_viewState();
-}
+  // @override
+  // void initState() {
+  //   loadIcecreams();
 
-class _Icecream_viewState extends State<Icecream_view> {
-  Map<String, dynamic>? decodedIcecreams;
+  //   super.initState();
+  // }
 
-  @override
-  void initState() {
-    loadIcecreams();
-
-    super.initState();
-  }
-
-  Future<void> loadIcecreams() async {
+  Future<Map<String, dynamic>> loadIcecreams() async {
     final rawIcecream = await rootBundle.loadString("assets/icecream.json");
-    decodedIcecreams = jsonDecode(rawIcecream);
-    print(decodedIcecreams);
-    setState(() {});
+    final decodedIcecreams = jsonDecode(rawIcecream);
+    // print(decodedIcecreams);
+    await Future.delayed(const Duration(seconds: 3));
+    return decodedIcecreams;
   }
 
   @override
@@ -33,17 +27,34 @@ class _Icecream_viewState extends State<Icecream_view> {
       padding: const EdgeInsets.all(16.0),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
-          "Icecream",
+          "Icecreams",
           style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
         ),
         Text(
           "We have something delicious for you.",
           style: Theme.of(context).textTheme.bodySmall,
         ),
-        if (decodedIcecreams != null)
-          const Text("Icecreams loaded.")
-        else
-          Center(child: const CircularProgressIndicator.adaptive())
+        Expanded(
+            child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FutureBuilder(
+                  future: loadIcecreams(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      final icecreams = snapshot.data as Map<String, dynamic>;
+
+                      return Text(icecreams["icecreams"][0]["flavor"]);
+                    } else {
+                      return const Center(
+                          child: CircularProgressIndicator.adaptive());
+                    }
+                  }),
+            ],
+          ),
+        ))
       ]),
     );
   }
