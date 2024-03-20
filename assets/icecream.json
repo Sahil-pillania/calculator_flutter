@@ -1,7 +1,7 @@
 {
   "icecreams": [
     {
-      "falvor": "Vanilla",
+      "flavor": "Vanilla",
       "Description": "Classic and creamy vanilla icecream",
       "Toppings": ["chocolate", "Sprinkles", "Whipped Cream"],
       "price": 5.99,
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "falvor": "Chocolate",
+      "flavor": "Chocolate",
       "Description": "Classic and creamy Chocolate icecream",
       "Toppings": ["chocolate sauce", "Sprinkles", "Whipped Cream"],
       "price": 9.99,
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "falvor": "Strawberry",
+      "flavor": "Strawberry",
       "Description": "Classic and creamy Strawberry icecream",
       "Toppings": ["Strawberry sauce", "Sprinkles", "Whipped Cream"],
       "price": 6.99,
@@ -64,7 +64,7 @@
       ]
     },
     {
-      "falvor": "Vanilla",
+      "flavor": "Vanilla",
       "Description": "Classic and creamy vanilla icecream",
       "Toppings": ["chocolate", "Sprinkles", "Whipped Cream"],
       "price": 4.99,
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "falvor": "Chocolate",
+      "flavor": "Chocolate",
       "Description": "Classic and creamy Chocolate icecream",
       "Toppings": ["chocolate sauce", "Sprinkles", "Whipped Cream"],
       "price": 11.99,
