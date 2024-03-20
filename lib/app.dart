@@ -1,4 +1,4 @@
-import "package:calculatorapp/views/home_view.dart";
+import "package:calculatorapp/home_view.dart";
 import "package:flutter/material.dart";
 
 class MyApp extends StatelessWidget {
@@ -8,9 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Calculator application',
-      theme: ThemeData(primarySwatch: Colors.deepOrange),
-      home: const MyHomePage(title: 'Calculator App'),
+      title: 'Icecream application',
+      // theme: ThemeData(primarySwatch: Colors.deepOrange),
+      // theme: ThemeData(primarySwatch: Colors.red),
+      // theme: ThemeData(primarySwatch: Colors.red),
+
+      home: const MyHomePage(title: 'Icecream App'),
     );
   }
 }
