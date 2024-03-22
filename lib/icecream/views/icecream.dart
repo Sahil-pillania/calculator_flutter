@@ -17,8 +17,8 @@ class Icecream_view extends StatelessWidget {
   Future<List<Icecream>?> loadIcecreams() async {
     final rawIcecream = await rootBundle.loadString("assets/icecream.json");
     // final decodedIcecreams = jsonDecode(rawIcecream);
-    // print(decodedIcecreams);
-    final icecreams = icecreamDatafromJson(rawIcecream);
+    // print(rawIcecream.toString());
+    final icecreams = icecreamDatafromJson(rawIcecream.toString());
     print("debugging ************************************************");
     print("Raw ice cream data: $rawIcecream");
     print("Parsed ice cream data: $icecreams");
@@ -41,27 +41,43 @@ class Icecream_view extends StatelessWidget {
           style: Theme.of(context).textTheme.bodySmall,
         ),
         Expanded(
-            child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder(
-                  future: loadIcecreams(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      final icecreams = snapshot.data;
-
-                      return Text(icecreams!.first.flavor);
-                      // return Text("data");
-                    } else {
-                      return const Center(
-                          child: CircularProgressIndicator.adaptive());
-                    }
-                  }),
-            ],
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FutureBuilder(
+                      future: loadIcecreams(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          final icecreams = snapshot.data;
+                          // return Text(
+                          //   icecreams!.first.flavor,
+                          //   maxLines: 1,
+                          //   overflow: TextOverflow.ellipsis,
+                          // );
+                          if (icecreams != null && icecreams.isNotEmpty) {
+                            return Text(
+                              icecreams!.first.flavor,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          } else {
+                            return Text(
+                                'No ice creams available'); // Handle case when icecreams is null or empty
+                          }
+                          // return Text("data");
+                        } else {
+                          return const Center(
+                              child: CircularProgressIndicator.adaptive());
+                        }
+                      }),
+                ],
+              ),
+            ),
           ),
-        ))
+        )
       ]),
     );
   }
